@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import Home from '../views/Home.vue'
 import Movies from '../views/Movies.vue'
+import Weather from '../views/Weather.vue'
 
 const routes = [
   {
@@ -12,7 +13,13 @@ const routes = [
     path: '/movies',
     name: 'Movies',
     component: Movies
+  },
+  {
+  path: '/weather',
+  name: 'Weather',
+  component: Weather
   }
+
 ]
 
 const router = createRouter({
