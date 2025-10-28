@@ -5,13 +5,12 @@
       <div class="nav-container">
         <router-link to="/" class="nav-logo">
           New service for anything
-          
         </router-link>
         <div class="nav-links">
           <router-link to="/" class="nav-link">Главная</router-link>
           <router-link to="/weather" class="nav-link">Погода</router-link>
           <router-link to="/movies" class="nav-link">Фильмы</router-link>
-          <router-link to="/news" class="nav-link">Новости</router-link>
+          <router-link to="/books" class="nav-link">Книги</router-link>
         </div>
       </div>
     </nav>
@@ -25,8 +24,8 @@
 
 <script>
 export default {
-  name: 'App'
-}
+  name: "App",
+};
 </script>
 
 <style>
@@ -37,7 +36,7 @@ export default {
 }
 
 body {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  font-family: "Avenir", Helvetica, Arial, sans-serif;
   background: #f5f5f5;
   min-height: 100vh;
 }

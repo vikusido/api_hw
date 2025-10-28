@@ -11,11 +11,17 @@
         <p>Узнайте текущую погоду в любом городе мира</p>
         <router-link to="/weather" class="btn">Перейти к погоде</router-link>
       </div>
-      
+
       <div class="feature-card">
         <h3>🎬 Фильмы</h3>
         <p>Поиск информации о фильмах и сериалах</p>
         <router-link to="/movies" class="btn">Перейти к фильмам</router-link>
+      </div>
+
+      <div class="feature-card">
+        <h3>📚 Книги</h3>
+        <p>Поиск информации о книгах</p>
+        <router-link to="/books" class="btn">Перейти к книгам</router-link>
       </div>
     </div>
   </div>
@@ -23,8 +29,8 @@
 
 <script>
 export default {
-  name: 'Home'
-}
+  name: "Home",
+};
 </script>
 
 <style scoped>
