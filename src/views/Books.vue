@@ -20,6 +20,14 @@
         <button @click="searchBooks" :disabled="!query || loading">
           Поиск
         </button>
+        <button
+          v-if="query || hasSearched"
+          @click="clearSearch"
+          :disabled="loading"
+          class="clear-btn"
+        >
+          Очистить
+        </button>
       </div>
 
       <div
@@ -87,6 +95,13 @@ const searchBooks = async () => {
     loading.value = false;
   }
 };
+
+const clearSearch = () => {
+  query.value = "";
+  books.value = [];
+  error.value = "";
+  hasSearched.value = false;
+};
 </script>
 
 <style scoped>
@@ -114,12 +129,13 @@ const searchBooks = async () => {
 
 .search-box {
   display: flex;
+  flex-wrap: wrap;
   gap: 10px;
   margin-bottom: 20px;
 }
 
 input {
-  flex: 1;
+  flex: 1 1 100px;
   padding: 10px;
   border: none;
   border-radius: 5px;
@@ -148,11 +164,26 @@ button:disabled {
   cursor: not-allowed;
 }
 
+.clear-btn {
+  padding: 10px 20px;
+  background: #fff;
+  color: #764ba2;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.clear-btn:disabled {
+  background: #ccc;
+  cursor: not-allowed;
+}
+
 .welcome-message {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 250px;
+  margin-top: 20px;
 }
 
 .welcome-content {
