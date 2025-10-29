@@ -22,6 +22,21 @@
         </button>
       </div>
 
+      <div
+        v-if="!books.length && !loading && !error && !hasSearched"
+        class="welcome-message"
+      >
+        <div class="welcome-content">
+          <div class="emoji">📖</div>
+          <h3>Добро пожаловать в поиск книг!</h3>
+          <p class="hint">
+            Введите название книги или автора в поле выше. <br />
+            Для более точного результата вводите названия на
+            <span class="highlight"> английском языке </span>.
+          </p>
+        </div>
+      </div>
+
       <div v-if="loading" class="loading">Загрузка...</div>
       <div v-if="error" class="error">{{ error }}</div>
 
@@ -35,8 +50,8 @@
         </div>
       </div>
 
-      <div v-else-if="!loading && !error" class="no-results">
-        Ничего не найдено
+      <div v-else-if="!loading && !error && hasSearched" class="no-results">
+        Ничего не найдено.
       </div>
     </div>
   </div>
@@ -51,6 +66,7 @@ const searchType = ref("title");
 const books = ref([]);
 const loading = ref(false);
 const error = ref("");
+const hasSearched = ref(false);
 
 const searchBooks = async () => {
   if (!query.value.trim()) return;
@@ -58,6 +74,7 @@ const searchBooks = async () => {
   loading.value = true;
   error.value = "";
   books.value = [];
+  hasSearched.value = true;
 
   try {
     const results = await fetchBooks(query.value, searchType.value, 20);
@@ -129,6 +146,44 @@ button {
 button:disabled {
   background: #ccc;
   cursor: not-allowed;
+}
+
+.welcome-message {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 250px;
+}
+
+.welcome-content {
+  background: rgba(255, 255, 255, 0.2);
+  color: white;
+  border-radius: 10px;
+  padding: 30px;
+  text-align: center;
+  max-width: 550px;
+}
+
+.welcome-content h3 {
+  font-size: 24px;
+  margin-bottom: 12px;
+}
+
+.welcome-content .emoji {
+  font-size: 50px;
+  margin-bottom: 5px;
+}
+
+.hint {
+  font-size: 14px;
+  color: #eee;
+  margin-top: 10px;
+  font-style: Arial, sans-serif;
+}
+
+.hint .highlight {
+  color: white;
+  font-weight: bold;
 }
 
 .books-list {
