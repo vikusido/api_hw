@@ -13,14 +13,10 @@
 
     <div v-if="!weatherData && !loading && !error" class="welcome-card">
       <div class="welcome-icon">
-<<<<<<< HEAD
         <img
           src="https://openweathermap.org/img/wn/02d@2x.png"
           alt="Частично облачно"
         />
-=======
-        <img src="https://openweathermap.org/img/wn/02d@2x.png" alt="Частично облачно" />
->>>>>>> origin
       </div>
       <h2>Добро пожаловать в поиск погоды!</h2>
       <p>Введите название города в поле выше, чтобы узнать текущую погоду.</p>
@@ -29,13 +25,9 @@
     <div v-if="loading" class="loading">Загрузка погоды... ⛅️</div>
     <div v-if="error" class="error">{{ error }}</div>
     <div v-if="weatherData" class="weather-card">
-<<<<<<< HEAD
       <div class="city-name">
         {{ weatherData.name }}, {{ weatherData.sys.country }}
       </div>
-=======
-      <div class="city-name">{{ weatherData.name }}, {{ weatherData.sys.country }}</div>
->>>>>>> origin
       <div class="weather-icon">
         <span v-if="isSunny" class="sunny-emoji">{{ sunnyEmoji }}</span>
         <img v-else :src="iconSrc" :alt="weatherData.weather[0].description" />
@@ -52,7 +44,6 @@
 </template>
 
 <script setup>
-<<<<<<< HEAD
 import { ref, computed } from "vue";
 
 const API_KEY = "ac4a5ed392abdae7603f78821737a8a3";
@@ -85,44 +76,14 @@ const searchWeather = async () => {
   }
   loading.value = true;
   error.value = "";
-=======
-import { ref, computed } from 'vue';
-
-const API_KEY = 'ac4a5ed392abdae7603f78821737a8a3';
-const city = ref('');
-const weatherData = ref(null);
-const loading = ref(false);
-const error = ref('');
-const sunnyEmoji = '☀️';
-const isSunny = computed(() => {
-  return weatherData.value && (weatherData.value.weather[0]?.icon === '01d' || weatherData.value.weather[0]?.icon === '01n');
-});
-const iconSrc = computed(() => {
-  if (weatherData.value && weatherData.value.weather[0]?.icon && !isSunny.value) {
-    return `https://openweathermap.org/img/wn/${weatherData.value.weather[0].icon}@2x.png`;
-  }
-  return '';
-});
-const searchWeather = async () => {
-  if (!city.value.trim()) {
-    error.value = 'Пожалуйста, введите название города!';
-    return;
-  }
-  loading.value = true;
-  error.value = '';
->>>>>>> origin
   try {
     const response = await fetch(
       `https://api.openweathermap.org/data/2.5/weather?q=${city.value}&appid=${API_KEY}&units=metric&lang=ru`
     );
     if (!response.ok) {
-<<<<<<< HEAD
       throw new Error(
         "Город не найден. Проверьте название и попробуйте снова."
       );
-=======
-      throw new Error('Город не найден. Проверьте название и попробуйте снова.');
->>>>>>> origin
     }
     weatherData.value = await response.json();
   } catch (err) {
@@ -212,21 +173,13 @@ button {
   font-size: 16px;
 }
 
-<<<<<<< HEAD
-=======
-
->>>>>>> origin
 button:disabled {
   background: #ccc;
   cursor: not-allowed;
 }
 
-<<<<<<< HEAD
 .loading,
 .error {
-=======
-.loading, .error {
->>>>>>> origin
   text-align: center;
   font-size: 18px;
   margin: 20px 0;
